@@ -128,6 +128,38 @@ class Config_COVID19:
     visual = False
     modelname = "TransFuse"
 
+class Config_DLCS:
+    data_path = "drive/MyDrive/DLCS/SAMCT/CT/"
+    data_subpath = "drive/MyDrive/DLCS/SAMCT/CT/DLCS data/"
+    save_path = "drive/MyDrive/DLCS/SAMCT/checkpoints/CT/DLCSCTscans/"
+    result_path = "drive/MyDrive/DLCS/SAMCT/result/CT/DLCSCTscans/"
+    tensorboard_path = "drive/MyDrive/DLCS/SAMCT/tensorboard/CT/DLCSCTscans/"
+    load_path = "./xxxx"
+    visual_result_path = "drive/MyDrive/DLCS/SAMCT/result/CT/DLCSCTscans/"
+
+    workers = 1                  # number of data loading workers (default: 8)
+    epochs = 200                 # number of total epochs to run (default: 400)
+    batch_size = 8               # batch size (default: 4)
+    learning_rate = 1e-4         # initial learning rate (default: 0.001)
+    momentum = 0.9               # momentum
+    classes = 2                  # the number of classes
+    img_size = 256               # the input size of model
+    train_split = "train"        # the file name of training set
+    val_split = "val"
+    test_split = "test"           # the file name of testing set
+    crop = None                  # the cropped image size
+    eval_freq = 1                # the frequency of evaluate the model
+    save_freq = 2000             # the frequency of saving the model
+    device = "cuda"              # training device, cpu or cuda
+    cuda = "on"                  # switch on/off cuda option (default: off)
+    gray = "yes"                 # the type of input image
+    img_channel = 1              # the channel of input image
+    eval_mode = "mask_slice"     # the mode when evaluate the model, slice level or patient level
+    pre_trained = False
+    mode = "train"
+    visual = False
+    modelname = "SAMCT"
+
 class Config_WORD:
     data_path = "../../dataset/CT/"
     save_path = "./checkpoints/CT/WORD/"
@@ -517,6 +549,8 @@ class Config_CAMUS:
 def get_config(task="Synapse"):
     if task == "SAMUS":
         return Config_SAMUS()
+    elif task == "DLCS":
+        return Config_DLCS()
     elif task == "TN3K":
         return Config_TN3K()
     elif task == "ThyroidNodule":
