@@ -290,12 +290,12 @@ class ImageToImage2D(Dataset):
         self.dataset_path = dataset_path
         self.one_hot_mask = one_hot_mask
         self.split = split
-        id_list_file = os.path.join(dataset_path, 'MainPatient/{0}.txt'.format(split))
+        id_list_file = os.path.join(dataset_path, '{0}.txt'.format(split))
         self.ids = [id_.strip() for id_ in open(id_list_file)]
         self.prompt = prompt
         self.img_size = img_size
         self.class_id = class_id
-        self.class_dict_file = os.path.join(dataset_path, 'MainPatient/class.json')
+        self.class_dict_file = os.path.join(dataset_path, 'class.json')
         with open(self.class_dict_file, 'r') as load_f:
             self.class_dict = json.load(load_f)
         if joint_transform:
@@ -317,8 +317,8 @@ class ImageToImage2D(Dataset):
             class_id0, sub_path, filename = id_.split('/')[0], id_.split('/')[1], id_.split('/')[2]
         img_path = os.path.join(os.path.join(self.dataset_path, sub_path), 'img')
         label_path = os.path.join(os.path.join(self.dataset_path, sub_path), 'label')
-        image = cv2.imread(os.path.join(img_path, filename + '.png'), 0)
-        mask = cv2.imread(os.path.join(label_path, filename + '.png'), 0)
+        image = cv2.imread(os.path.join(img_path, filename + '.nii.gz'), 0)
+        mask = cv2.imread(os.path.join(label_path, filename + '.nii.gz'), 0)
         # --------- make the point prompt -----------------
         classes = self.class_dict[sub_path]
         #classes = 2
@@ -371,7 +371,7 @@ class ImageToImage2D(Dataset):
             'pt': pt,
             'bbox': bbox,
             'low_mask':low_mask,
-            'image_name': filename + '.png',
+            'image_name': filename + '.nii.gz',
             'class_id': class_id,
             }
 
@@ -419,12 +419,12 @@ class ImageToImage2DTest(Dataset):
         self.dataset_path = dataset_path
         self.one_hot_mask = one_hot_mask
         self.split = split
-        id_list_file = os.path.join(dataset_path, 'MainPatient/TestMainPatient/{0}.txt'.format(split))
+        id_list_file = os.path.join(dataset_path, '{0}.txt'.format(split))
         self.ids = [id_.strip() for id_ in open(id_list_file)]
         self.prompt = prompt
         self.img_size = img_size
         self.class_id = class_id
-        self.class_dict_file = os.path.join(dataset_path, 'MainPatient/class.json')
+        self.class_dict_file = os.path.join(dataset_path, 'class.json')
         with open(self.class_dict_file, 'r') as load_f:
             self.class_dict = json.load(load_f)
         if joint_transform:
@@ -446,8 +446,8 @@ class ImageToImage2DTest(Dataset):
             class_id0, sub_path, filename = id_.split('/')[0], id_.split('/')[1], id_.split('/')[2]
         img_path = os.path.join(os.path.join(self.dataset_path, sub_path), 'img')
         label_path = os.path.join(os.path.join(self.dataset_path, sub_path), 'label')
-        image = cv2.imread(os.path.join(img_path, filename + '.png'), 0)
-        mask = cv2.imread(os.path.join(label_path, filename + '.png'), 0)
+        image = cv2.imread(os.path.join(img_path, filename + '.nii.gz'), 0)
+        mask = cv2.imread(os.path.join(label_path, filename + '.nii.gz'), 0)
         # --------- make the point prompt -----------------
         classes = self.class_dict[sub_path]
         #classes = 2
@@ -500,7 +500,7 @@ class ImageToImage2DTest(Dataset):
             'pt': pt,
             'bbox': bbox,
             'low_mask':low_mask,
-            'image_name': filename + '.png',
+            'image_name': filename + '.nii.gz',
             'class_id': class_id,
             }
 
