@@ -134,7 +134,7 @@ class Config_DLCS:
     save_path = "drive/MyDrive/DLCS/SAMCT/checkpoints/CT/DLCSCTscans/"
     result_path = "drive/MyDrive/DLCS/SAMCT/result/CT/DLCSCTscans/"
     tensorboard_path = "drive/MyDrive/DLCS/SAMCT/tensorboard/CT/DLCSCTscans/"
-    load_path = "./xxxx"
+    load_path = "drive/MyDrive/DLCS/SAMCT/checkpoints/CT/DLCSCTscans/"
     visual_result_path = "drive/MyDrive/DLCS/SAMCT/result/CT/DLCSCTscans/"
 
     workers = 1                  # number of data loading workers (default: 8)
@@ -143,7 +143,7 @@ class Config_DLCS:
     learning_rate = 1e-4         # initial learning rate (default: 0.001)
     momentum = 0.9               # momentum
     classes = 2                  # the number of classes
-    img_size = 256               # the input size of model
+    img_size = 512               # the input size of model
     train_split = "train"        # the file name of training set
     val_split = "val"
     test_split = "test"           # the file name of testing set
